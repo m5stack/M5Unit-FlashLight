@@ -1,6 +1,5 @@
 #include <M5Stack.h>
 #include <M5GFX.h>
-#include <M5_DLight.h>
 
 #define FLASH_EN_PIN 26
 
@@ -39,8 +38,7 @@ void unit_flash_set_brightness(uint8_t brightness) {
             digitalWrite(FLASH_EN_PIN, HIGH);
             delayMicroseconds(4);
         }
-    }
-    else {
+    } else {
         digitalWrite(FLASH_EN_PIN, LOW);
     }
 }
@@ -57,91 +55,84 @@ void setup() {
     unit_flash_init();
 }
 
-void loop() {  
+void loop() {
     canvas.fillSprite(BLACK);
     canvas.setTextSize(2);
     canvas.setTextColor(ORANGE);
     canvas.drawString("M5Unit Flashlight", 160, 10);
     canvas.setTextColor(WHITE);
-    switch (flash_brightness_time)
-    {
-    case 0:
-        canvas.drawString("Off", 150, 100);
-        break;
-    case 1:
-        canvas.drawString("100% brightness+220ms", 150, 100);
-        break;
-    case 2:
-        canvas.drawString("90% brightness+220ms", 150, 100);
-        break;
-    case 3:
-        canvas.drawString("80% brightness+220ms", 150, 100);
-        break;
-    case 4:
-        canvas.drawString("70% brightness+220ms", 150, 100);
-        break;
-    case 5:
-        canvas.drawString("60% brightness+220ms", 150, 100);
-        break;
-    case 6:
-        canvas.drawString("50% brightness+220ms", 150, 100);
-        break;
-    case 7:
-        canvas.drawString("40% brightness+220ms", 150, 100);
-        break;
-    case 8:
-        canvas.drawString("30% brightness+220ms", 150, 100);
-        break;
-    case 9:
-        canvas.drawString("100% brightness+1.3s", 150, 100);
-        break;
-    case 10:
-        canvas.drawString("90% brightness+1.3s", 150, 100);
-        break;
-    case 11:
-        canvas.drawString("80% brightness+1.3s", 150, 100);
-        break;
-    case 12:
-        canvas.drawString("70% brightness+1.3s", 150, 100);
-        break;
-    case 13:
-        canvas.drawString("60% brightness+1.3s", 150, 100);
-        break;
-    case 14:
-        canvas.drawString("50% brightness+1.3s", 150, 100);
-        break;
-    case 15:
-        canvas.drawString("40% brightness+1.3s", 150, 100);
-        break;
-    case 16:
-        canvas.drawString("30% brightness+1.3s", 150, 100);
-        break;
-    
-    default:
-        break;
+    switch (flash_brightness_time) {
+        case 0:
+            canvas.drawString("Off", 150, 100);
+            break;
+        case 1:
+            canvas.drawString("100% brightness+220ms", 150, 100);
+            break;
+        case 2:
+            canvas.drawString("90% brightness+220ms", 150, 100);
+            break;
+        case 3:
+            canvas.drawString("80% brightness+220ms", 150, 100);
+            break;
+        case 4:
+            canvas.drawString("70% brightness+220ms", 150, 100);
+            break;
+        case 5:
+            canvas.drawString("60% brightness+220ms", 150, 100);
+            break;
+        case 6:
+            canvas.drawString("50% brightness+220ms", 150, 100);
+            break;
+        case 7:
+            canvas.drawString("40% brightness+220ms", 150, 100);
+            break;
+        case 8:
+            canvas.drawString("30% brightness+220ms", 150, 100);
+            break;
+        case 9:
+            canvas.drawString("100% brightness+1.3s", 150, 100);
+            break;
+        case 10:
+            canvas.drawString("90% brightness+1.3s", 150, 100);
+            break;
+        case 11:
+            canvas.drawString("80% brightness+1.3s", 150, 100);
+            break;
+        case 12:
+            canvas.drawString("70% brightness+1.3s", 150, 100);
+            break;
+        case 13:
+            canvas.drawString("60% brightness+1.3s", 150, 100);
+            break;
+        case 14:
+            canvas.drawString("50% brightness+1.3s", 150, 100);
+            break;
+        case 15:
+            canvas.drawString("40% brightness+1.3s", 150, 100);
+            break;
+        case 16:
+            canvas.drawString("30% brightness+1.3s", 150, 100);
+            break;
+
+        default:
+            break;
     }
-    
+
     canvas.drawString("level", 70, 220);
     canvas.drawString("off", 160, 220);
-    canvas.drawString("on", 250, 220);    
+    canvas.drawString("on", 250, 220);
     canvas.pushSprite(0, 0);
 
     M5.update();
-    if (M5.BtnA.wasPressed())
-    {
+    if (M5.BtnA.wasPressed()) {
         flash_brightness_time++;
         if (flash_brightness_time > 16) {
             flash_brightness_time = 1;
         }
-    }   
-    else if (M5.BtnB.wasPressed())
-    {
+    } else if (M5.BtnB.wasPressed()) {
         flash_brightness_time = 0;
-        unit_flash_set_brightness(0);        
-    }   
-    else if (M5.BtnC.wasPressed())
-    {
-        unit_flash_set_brightness(flash_brightness_time);       
-    }   
-    // 逐渐变亮
+        unit_flash_set_brightness(0);
+    } else if (M5.BtnC.wasPressed()) {
+        unit_flash_set_brightness(flash_brightness_time);
+    }
 }
